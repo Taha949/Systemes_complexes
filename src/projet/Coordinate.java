@@ -59,4 +59,12 @@ public class Coordinate {
 	public void addPeople(int nbPeople) {
 		this.nbPeople += nbPeople;
 	}
+
+	public String getRobots(){
+		String robots = "";
+		for (String robot : this.robots) {
+			robots += robot + " ";
+		}
+		return robots;
+	}
 }
