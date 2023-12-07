@@ -9,8 +9,8 @@ public class MainAlgorythm {
     public static WildFires wildfires;
     public static Interface view;
 
-    public static final int MAXTIME = 18000;
-    public static int remainingTime = 18000;
+    public static final int MAXTIME = 60000;
+    public static int remainingTime = 60000;
     public static final int timeToSleep = 100;
 
     public static int nbExplorationRobots = 3;
@@ -18,7 +18,7 @@ public class MainAlgorythm {
     public static int nbExistingFires = 10;
 
     public static int maxFireQuantity = 10;
-    public static int maxTimeBeforePropagation = 100;
+    public static int maxTimeBeforePropagation = 50;
 
     public static void doTasks() {
         base.next();
