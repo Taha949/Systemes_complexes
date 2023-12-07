@@ -39,9 +39,11 @@ public class Coordinate {
 
 	public void removeRobot(String robotName) {
 		String[] newArray = new String[this.robots.length - 1];
+		int cpt = 0;
 		for (int i = 0; i < this.robots.length; i++) {
 			if (this.robots[i] != robotName) {
-				newArray[i] = this.robots[i];
+				newArray[cpt] = this.robots[i];
+				cpt++;
 			}
 		}
 		this.robots = newArray;

@@ -42,14 +42,21 @@ public class Robot {
 	}
 	
 	public boolean next() {
+		System.out.println(this.name + " : b" + this.battery + " x" + this.position.x + " y" + this.position.y + " al"+ this.actionSequence.length);
 		if(this.actionSequence.length != 0) {
+			//reduit la batterie
+			this.battery--;
 			// unshift l'action
+			System.out.println("ancien: " + this.actionSequence.length);
+			System.out.println(this.actionSequence[this.actionSequence.length - 1].actionType);
 			Action action = this.actionSequence[0];
 			Action[] newActionSequence = new Action[this.actionSequence.length -1];
-			for(int i=1; i<newActionSequence.length; i++) {
-				newActionSequence[i - 1] = this.actionSequence[i];
+			for(int i=0; i<newActionSequence.length; i++) {
+				newActionSequence[i] = this.actionSequence[i+1];
 			}
 			this.actionSequence = newActionSequence;
+			System.out.println("nouveau: " + this.actionSequence.length);
+
 			Grid grid = Grid.getInstance();
 			Base base = Base.getInstance();
 			//sauve les personnes si il y a le feu
@@ -62,12 +69,13 @@ public class Robot {
 			Coordinate[] neighbors = grid.getNeighbors(this.position);
 			for (int i = 0; i < neighbors.length; i++) {
 				if(neighbors[i].isFire) {
-					base.addFire(neighbors[i]);
+					base.addFire(WildFires.getInstance().getFire(neighbors[i]));
 				}
 			}
 			//execution de l'action
 			if(action.actionType == "move") {
 				grid.moveRobot(this.name,  this.position,  action.coordinate);
+				this.position = action.coordinate;
 			}else {
 				WildFires.getInstance().decrementFireAt(action.coordinate);
 			}
@@ -89,5 +97,6 @@ public class Robot {
 	
 	public void setActionSequence(Action[] actionSequence) {
 		this.actionSequence = actionSequence;
+		System.out.println("al: " + this.actionSequence.length + " " + this.actionSequence[actionSequence.length -1].actionType);
 	}
 }

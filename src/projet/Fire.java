@@ -5,9 +5,11 @@ public class Fire {
    public Coordinate position;
     public int fireQuantity; // le nombre de deci-seconde qu'il faut pour éteindre le feu
     public int timeBeforePropagation;
+    public int nbPeople;
 
     public Fire(Coordinate position) {
         this.position = position;
+        this.nbPeople = position.nbPeople;
         this.fireQuantity = 10;
         this.timeBeforePropagation = 50;
     }

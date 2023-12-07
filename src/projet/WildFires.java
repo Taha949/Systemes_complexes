@@ -80,4 +80,13 @@ public class WildFires {
         newFires[newFires.length - 1] = fire;
         this.fires = newFires;
     }
+
+    public Fire getFire(Coordinate coordinate) {
+        for (Fire fire : this.fires) {
+            if (fire.getPosition().sameCoordinate(coordinate)) {
+                return fire;
+            }
+        }
+        return null;
+    }
 }

@@ -35,7 +35,7 @@ public class Base {
 
 	public static Base getInstance(int nbRobots, int nbExplorationRobots) {
 		if (INSTANCE == null) {
-			return new Base(nbRobots, nbExplorationRobots);
+			INSTANCE = new Base(nbRobots, nbExplorationRobots);
 		}
 		return INSTANCE;
 	}
@@ -78,6 +78,9 @@ public class Base {
 				this.addRobotOnStorage(this.robots[i]);
 			}
 		}
+		for(int i = 0; i<this.explorationRobots.length; i++) {
+			this.explorationRobots[i].next();
+		}
 	}
 
 	public void savePeople(int nbPeople){
@@ -85,10 +88,9 @@ public class Base {
 		this.nbPeopleSaved += nbPeople;
 	}
 	
-	public void addFire(Coordinate position) {
-		//TODO: ajouter le nombre de personnes
+	public void addFire(Fire fire) {
 		for(int i = 0; i<this.knownFires.length; i++) {
-			if (this.knownFires[i].position.sameCoordinate(position)) {
+			if (this.knownFires[i].position.sameCoordinate(fire.position)) {
 				return;
 			}
 		}
@@ -96,7 +98,7 @@ public class Base {
 		for(int i = 0; i<this.knownFires.length; i++) {
 			newArray[i] = this.knownFires[i];
 		}
-		newArray[newArray.length-1] = new Fire(position);
+		newArray[newArray.length-1] = new Fire(fire.position);
 		this.knownFires = newArray;
 	}
 
@@ -125,7 +127,6 @@ public class Base {
 	 * on trie par distance: les feux les plus loins seront eteints en premier ce qui permet d'explorer la zone en meme temps
 	 */
 	private void sortFires() {
-		//TODO sort en fonction des personnes
 		for (int i = 0; i < this.knownFires.length; i++){  
 			for (int j = i + 1; j < this.knownFires.length; j++){  
 				Fire tmp = null;  
@@ -135,7 +136,19 @@ public class Base {
 					tmp = this.knownFires[i];  
 					this.knownFires[i] = this.knownFires[j];  
 					this.knownFires[j] = tmp;  
-				}  
+				}
+			}
+		}
+		for (int i = 0; i < this.knownFires.length; i++){  
+			for (int j = i + 1; j < this.knownFires.length; j++){  
+				Fire tmp = null;  
+				if (
+					this.knownFires[i].nbPeople < this.knownFires[j].nbPeople
+				){
+					tmp = this.knownFires[i];  
+					this.knownFires[i] = this.knownFires[j];  
+					this.knownFires[j] = tmp;  
+				}
 			}
 		}
 	}
@@ -163,12 +176,14 @@ public class Base {
 	}
 	
 	private Action[] getActionSequenceForExplore(String side) {
-		Action[] actionSequence = new Action[25];
+		Action[] actionSequence = new Action[24];
 		Coordinate lastPosition = POSITION;
 		if(side == "center") {
-			actionSequence[0] = new Action("move", new Coordinate(POSITION.x, POSITION.y+1));
-			lastPosition = new Coordinate(POSITION.x, POSITION.y+2);
+			lastPosition = new Coordinate(lastPosition.x, lastPosition.y+1);
 			actionSequence[0] = new Action("move", lastPosition);
+			lastPosition = new Coordinate(lastPosition.x, lastPosition.y+1);
+			actionSequence[1] = new Action("move", lastPosition);
+
 			for(int i=2; i<5; i++) {
 				lastPosition = new Coordinate(lastPosition.x+1, lastPosition.y);
 				actionSequence[i] = new Action("move", lastPosition);
@@ -181,16 +196,16 @@ public class Base {
 				lastPosition = new Coordinate(lastPosition.x-1, lastPosition.y);
 				actionSequence[i] = new Action("move", lastPosition);
 			}
-			for(int i=15; i<20; i++) {
+			for(int i=15; i<19; i++) {
 				lastPosition = new Coordinate(lastPosition.x, lastPosition.y+1);
 				actionSequence[i] = new Action("move", lastPosition);
 			}
-			for(int i=20; i<23; i++) {
+			for(int i=19; i<22; i++) {
 				lastPosition = new Coordinate(lastPosition.x+1, lastPosition.y);
 				actionSequence[i] = new Action("move", lastPosition);
 			}
-			actionSequence[23] = new Action("move", new Coordinate(lastPosition.x, lastPosition.y-1));
-			actionSequence[24] = new Action("move", POSITION);
+			actionSequence[22] = new Action("move", new Coordinate(lastPosition.x, lastPosition.y-1));
+			actionSequence[23] = new Action("move", POSITION);
 		}else{
 			int factor = 1;
 			if(side == "left") {
@@ -219,8 +234,4 @@ public class Base {
 		}
 		return actionSequence;
 	}
-	
-	
-	
-	
 }

@@ -10,9 +10,9 @@ public class MainAlgorythm {
     public static Interface view;
 
 
-    public static final int MAXTIME = 18000;
-    public static int remainingTime = 18000;
-    public static final int timeToSleep = 100;
+    public static final int MAXTIME = 180000;
+    public static int remainingTime = 180000;
+    public static final int timeToSleep = 1000;
 
     public static int nbExplorationRobots = 3;
     public static int nbRobots = 7;

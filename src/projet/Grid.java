@@ -63,6 +63,7 @@ public class Grid {
 	}
 	
 	public void moveRobot(String robotName, Coordinate from, Coordinate to) {
+		System.out.println("moveRobot " + robotName + " from " + from.x + " " + from.y + " to " + to.x + " " + to.y);
 		this.coordinates[from.x][from.y].removeRobot(robotName);
 		this.coordinates[to.x][to.y].addRobot(robotName);
 	}
