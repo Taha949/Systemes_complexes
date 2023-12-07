@@ -7,9 +7,12 @@ public class MainAlgorythm {
 
     public static Base base;
     public static WildFires wildfires;
+    public static Interface view;
+
+
     public static final int MAXTIME = 18000;
     public static int remainingTime = 18000;
-    public static final int timeToSleep = 100;
+    public static final int timeToSleep = 1000;
 
     public static int nbExplorationRobots = 3;
     public static int nbRobots = 7;
@@ -18,12 +21,16 @@ public class MainAlgorythm {
     public static void doTasks() {
         base.next();
         wildfires.next();
-        // TODO: actualiser la grille
+        view.update();
     }
 
     public static void main(String[] args) {
         base = Base.getInstance(nbRobots, nbExplorationRobots);
         wildfires = WildFires.getInstance(nbExistingFires);
+        view = new Interface();
+        view.setVisible(true);
+
+
 
         Timer timer = new Timer();
 

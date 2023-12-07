@@ -139,9 +139,7 @@ public class Base {
 	private void sortStoredRobots() {
 		for (int i = 0; i < this.storedRobots.length; i++){
 			for (int j = i + 1; j < this.storedRobots.length; j++){
-				Robot tmp = null;  
-				System.out.println(this.storedRobots.length);
-				System.out.println(i);
+				Robot tmp = null;
 				if (
 					this.storedRobots[i].battery > this.storedRobots[j].battery
 				){  
