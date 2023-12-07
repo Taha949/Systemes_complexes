@@ -26,25 +26,28 @@ public class Robot {
 		Coordinate destination = fire.position;
 		int fireToDecrement = fire.fireQuantity;
 		Coordinate[] path = Grid.getInstance().getPath(this.position, destination);
-		System.out.println("pathlength: " + path.length);
 		int pathLength = path.length;
 		int effectiveDecrementedFire = Math.min(this.battery - pathLength * 2, fireToDecrement);
+		if(effectiveDecrementedFire <= 0){
+			return 0;
+		}
 		int actionSequenceLenght = pathLength * 2 + effectiveDecrementedFire;
 		this.actionSequence = new Action[actionSequenceLenght];
-		for(int i = 0; i<actionSequenceLenght; i++){
+		for(int i = 0; i<actionSequenceLenght -1; i++){
 			if(i<pathLength) {
 				this.actionSequence[i] = new Action("move", path[i]);//aller
 			} else if(i < pathLength + effectiveDecrementedFire) {
 				this.actionSequence[i] = new Action("putOut", destination);//eteindre
 			} else {
-				this.actionSequence[i] = new Action("move", path[actionSequenceLenght - i -1]);//retour
+				this.actionSequence[i] = new Action("move", path[actionSequenceLenght - i -2]);//retour
 			}
 		}
+		this.actionSequence[actionSequenceLenght-1] = new Action("move", Base.getInstance().POSITION);//retour
 		return effectiveDecrementedFire;
 	}
-	
+
 	public boolean next() {
-		System.out.println(this.name + " : b" + this.battery + " x" + this.position.x + " y" + this.position.y + " al"+ this.actionSequence.length);
+		// System.out.println(this.name + " : b" + this.battery + " x" + this.position.x + " y" + this.position.y + " al"+ this.actionSequence.length);
 		if(this.actionSequence.length != 0) {
 			//reduit la batterie
 			this.battery--;
@@ -72,7 +75,7 @@ public class Robot {
 				}
 			}
 			//execution de l'action
-			if(action.actionType == "move") {
+			if(action.actionType.equals("move")) {
 				grid.moveRobot(this.name,  this.position,  action.coordinate);
 				this.position = action.coordinate;
 			}else {
@@ -97,7 +100,7 @@ public class Robot {
 		}
 		return false;
 	}
-	
+
 	public void setActionSequence(Action[] actionSequence) {
 		this.actionSequence = actionSequence;
 	}

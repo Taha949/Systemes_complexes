@@ -6,12 +6,16 @@ public class Fire {
     public int fireQuantity; // le nombre de deci-seconde qu'il faut pour éteindre le feu
     public int timeBeforePropagation;
     public int nbPeople;
+    private int maxFireQuantity;
+    private int maxTimeBeforePropagation;
 
-    public Fire(Coordinate position) {
+    public Fire(Coordinate position, int fireQuantity, int timeBeforePropagation) {
         this.position = position;
         this.nbPeople = position.nbPeople;
-        this.fireQuantity = 10;
-        this.timeBeforePropagation = 50;
+        this.fireQuantity = fireQuantity;
+        this.timeBeforePropagation = timeBeforePropagation;
+        this.maxFireQuantity = fireQuantity;
+        this.maxTimeBeforePropagation = timeBeforePropagation;
     }
 
     public void next() {
@@ -24,9 +28,6 @@ public class Fire {
             } else {
                 this.timeBeforePropagation--;
             }
-
-            // Décrémentation de la quantité de feu
-            this.decrementation();
             this.killPeople();
         }
     }
@@ -39,16 +40,20 @@ public class Fire {
             int probability = (int) Math.floor(Math.random() * 100);
             if (probability < 33) {
                 neighbor.isFire = true;
+                WildFires.getInstance().addFire(new Fire(neighbor, this.maxFireQuantity, this.maxTimeBeforePropagation));
             }
         }
     }
 
-    public void decrementation(int fireQuantity) {
+    public void virtualDecrementation(int fireQuantity) {
         this.fireQuantity-= fireQuantity;
     }
 
      public void decrementation() {
         this.fireQuantity--;
+        if(this.fireQuantity <= 0){
+            this.position.isFire = false;
+        }
     }
 
     public Coordinate getPosition() {

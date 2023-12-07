@@ -1,5 +1,7 @@
 package projet;
 
+import java.util.Arrays;
+
 public class Base {
 	
 	private static Base INSTANCE = null;
@@ -13,8 +15,8 @@ public class Base {
 	public Robot[] explorationRobots;
 	public String[] explorationRobotsSides = new String[]{"center", "left", "right"};
 	public int nbPeopleSaved = 0;
-	
-	
+
+
 	private Base(int nbRobots, int nbExplorationRobots) {
 		this.explorationRobots = new Robot[nbExplorationRobots];
 		this.robots = new Robot[nbRobots - nbExplorationRobots];
@@ -46,8 +48,8 @@ public class Base {
 		}
 		return INSTANCE;
 	}
-	
-	
+
+
 	public void next() {
 		// envoi des robots d'exploration
 		if(this.explorationRobots.length > 0 && explorationRobots[0].battery == 30) {
@@ -65,10 +67,16 @@ public class Base {
 		}
 		for(int i = 0; i < this.knownFires.length; i++) {
 			for(int j = 0; j < this.storedRobots.length; j++) {
-				System.out.println("hello");
-				if(this.knownFires[i].fireQuantity > 0) {	
-					this.knownFires[i].decrementation(this.storedRobots[j].CreateActionSequence(this.knownFires[i]));
-					this.removeRobotFromStorage(this.storedRobots[j]);
+				if(this.knownFires[i].fireQuantity > 0) {
+					int effectiveDecrementedFire = this.storedRobots[j].CreateActionSequence(this.knownFires[i]);
+					this.knownFires[i].virtualDecrementation(effectiveDecrementedFire);
+					if(effectiveDecrementedFire > 0){
+						this.removeRobotFromStorage(this.storedRobots[j]);
+					}
+					if(this.knownFires[i].fireQuantity == 0) {
+						this.removeFire(this.knownFires[i]);
+						break;
+					}
 				}
 			}
 		}
@@ -88,7 +96,7 @@ public class Base {
 		Grid.getInstance().coordinates[POSITION.x][POSITION.y].addPeople(nbPeople);;
 		this.nbPeopleSaved += nbPeople;
 	}
-	
+
 	public void addFire(Fire fire) {
 		for(int i = 0; i<this.knownFires.length; i++) {
 			if (this.knownFires[i].position.sameCoordinate(fire.position)) {
@@ -99,19 +107,29 @@ public class Base {
 		for(int i = 0; i<this.knownFires.length; i++) {
 			newArray[i] = this.knownFires[i];
 		}
-		newArray[newArray.length-1] = new Fire(fire.position);
+		newArray[newArray.length-1] = WildFires.getInstance().newVirtualFire(fire.position);
+		this.knownFires = newArray;
+	}
+
+	public void removeFire(Fire fire) {
+		Fire[] newArray = new Fire[this.knownFires.length -1];
+		int cpt = 0;
+		for(int i = 0; i<this.knownFires.length; i++) {
+			if (!this.knownFires[i].position.sameCoordinate(fire.position)) {
+				newArray[cpt] = this.knownFires[i];
+				cpt++;
+			}
+		}
 		this.knownFires = newArray;
 	}
 
 	private void addRobotOnStorage(Robot robot) {
-		Robot[] newArray = new Robot[this.storedRobots.length +1];
-		for (int i = 0; i < this.storedRobots.length; i++) {
-			newArray[i] = this.storedRobots[i];
-		}
+		Robot[] newArray = Arrays.copyOf(this.storedRobots, this.storedRobots.length + 1);
 		newArray[this.storedRobots.length] = robot;
 		this.storedRobots = newArray;
+		System.out.println("added robot " + robot.name + ", storage length : " + this.storedRobots.length);
 	}
-	
+
 	private void removeRobotFromStorage(Robot robot) {
 		Robot[] newArray = new Robot[this.storedRobots.length -1];
 		int cpt = 0;
@@ -122,8 +140,10 @@ public class Base {
 			}
 		}
 		this.storedRobots = newArray;
+		System.out.println("removed robot " + robot.name + ", storage length : " + this.storedRobots.length);
+
 	}
-	
+
 	/**
 	 * on trie par distance: les feux les plus loins seront eteints en premier ce qui permet d'explorer la zone en meme temps
 	 */
@@ -153,6 +173,7 @@ public class Base {
 			}
 		}
 	}
+
 	public int getUnsavedPeopleCount() {
 	    int count = 0;
 	    Coordinate[][] coordinates = Grid.getInstance().coordinates;
@@ -198,7 +219,7 @@ public class Base {
 	private Action[] getActionSequenceForExplore(String side) {
 		Action[] actionSequence = new Action[24];
 		Coordinate lastPosition = POSITION;
-		if(side == "center") {
+		if(side.equals("center")) {
 			lastPosition = new Coordinate(lastPosition.x, lastPosition.y+1);
 			actionSequence[0] = new Action("move", lastPosition);
 			lastPosition = new Coordinate(lastPosition.x, lastPosition.y+1);
@@ -208,11 +229,11 @@ public class Base {
 				lastPosition = new Coordinate(lastPosition.x+1, lastPosition.y);
 				actionSequence[i] = new Action("move", lastPosition);
 			}
-			for(int i=4; i<9; i++) {
+			for(int i=5; i<9; i++) {
 				lastPosition = new Coordinate(lastPosition.x, lastPosition.y-1);
 				actionSequence[i] = new Action("move", lastPosition);
 			}
-			for(int i=8; i<15; i++) {
+			for(int i=9; i<15; i++) {
 				lastPosition = new Coordinate(lastPosition.x-1, lastPosition.y);
 				actionSequence[i] = new Action("move", lastPosition);
 			}
@@ -228,7 +249,7 @@ public class Base {
 			actionSequence[23] = new Action("move", POSITION);
 		}else{
 			int factor = 1;
-			if(side == "left") {
+			if(side.equals("left")) {
 				factor = -1;
 			}
 			for(int i=0; i<4; i++) {
