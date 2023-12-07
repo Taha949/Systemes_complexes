@@ -8,6 +8,7 @@ public class Robot {
 	public Coordinate position;
 	public String name;
 	private Action[] actionSequence;
+	private int timeBeforeFullBattery = 20;
 	
 	public Robot(String robotName, Coordinate position) {
 		this.name = robotName;
@@ -25,6 +26,7 @@ public class Robot {
 		Coordinate destination = fire.position;
 		int fireToDecrement = fire.fireQuantity;
 		Coordinate[] path = Grid.getInstance().getPath(this.position, destination);
+		System.out.println("pathlength: " + path.length);
 		int pathLength = path.length;
 		int effectiveDecrementedFire = Math.min(this.battery - pathLength * 2, fireToDecrement);
 		int actionSequenceLenght = pathLength * 2 + effectiveDecrementedFire;
@@ -35,7 +37,7 @@ public class Robot {
 			} else if(i < pathLength + effectiveDecrementedFire) {
 				this.actionSequence[i] = new Action("putOut", destination);//eteindre
 			} else {
-				this.actionSequence[i] = new Action("move", path[pathLength - i -1]);//retour
+				this.actionSequence[i] = new Action("move", path[actionSequenceLenght - i -1]);//retour
 			}
 		}
 		return effectiveDecrementedFire;
@@ -47,15 +49,12 @@ public class Robot {
 			//reduit la batterie
 			this.battery--;
 			// unshift l'action
-			System.out.println("ancien: " + this.actionSequence.length);
-			System.out.println(this.actionSequence[this.actionSequence.length - 1].actionType);
 			Action action = this.actionSequence[0];
 			Action[] newActionSequence = new Action[this.actionSequence.length -1];
 			for(int i=0; i<newActionSequence.length; i++) {
 				newActionSequence[i] = this.actionSequence[i+1];
 			}
 			this.actionSequence = newActionSequence;
-			System.out.println("nouveau: " + this.actionSequence.length);
 
 			Grid grid = Grid.getInstance();
 			Base base = Base.getInstance();
@@ -81,12 +80,16 @@ public class Robot {
 			}
 			if(this.actionSequence.length == 0) {
 				//le robot est de retour
+				this.timeBeforeFullBattery = 20;
 				return true;
 			}
 		}else {
 			//le robot est dans la base
 			if(this.battery != 30) {
-				this.battery++;
+				this.timeBeforeFullBattery--;
+				if(this.timeBeforeFullBattery == 0){
+					this.battery = 30;
+				}
 			}
 			if(this.water != 20) {
 				this.water++;
@@ -97,6 +100,5 @@ public class Robot {
 	
 	public void setActionSequence(Action[] actionSequence) {
 		this.actionSequence = actionSequence;
-		System.out.println("al: " + this.actionSequence.length + " " + this.actionSequence[actionSequence.length -1].actionType);
 	}
 }

@@ -43,7 +43,11 @@ public class Fire {
         }
     }
 
-    public void decrementation() {
+    public void decrementation(int fireQuantity) {
+        this.fireQuantity-= fireQuantity;
+    }
+
+     public void decrementation() {
         this.fireQuantity--;
     }
 

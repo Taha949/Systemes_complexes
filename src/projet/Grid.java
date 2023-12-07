@@ -47,7 +47,7 @@ public class Grid {
 		}
 		int row = from.y;
 		while(row != to.y) {
-			column = column + factorY;
+			row = row + factorY;
 			path[cpt] = this.coordinates[to.x][row];
 			cpt++;
 		}

@@ -65,8 +65,9 @@ public class Base {
 		}
 		for(int i = 0; i < this.knownFires.length; i++) {
 			for(int j = 0; j < this.storedRobots.length; j++) {
+				System.out.println("hello");
 				if(this.knownFires[i].fireQuantity > 0) {	
-					this.knownFires[i].decrementation();
+					this.knownFires[i].decrementation(this.storedRobots[j].CreateActionSequence(this.knownFires[i]));
 					this.removeRobotFromStorage(this.storedRobots[j]);
 				}
 			}
@@ -152,7 +153,8 @@ public class Base {
 			}
 		}
 	}
-	
+
+
 	private void sortStoredRobots() {
 		for (int i = 0; i < this.storedRobots.length; i++){
 			for (int j = i + 1; j < this.storedRobots.length; j++){
