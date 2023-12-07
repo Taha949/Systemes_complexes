@@ -76,6 +76,74 @@ public class Interface extends JFrame {
 		JTextPane nbPeople1 = new JTextPane();
 		coordinate01.add(nbPeople1);
 		
+		JPanel coordinate02 = new JPanel();
+		grid.add(coordinate02);
+		
+		JPanel robotsNames02 = new JPanel();
+		coordinate02.add(robotsNames02);
+		
+		JPanel nbPeople2 = new JPanel();
+		coordinate02.add(nbPeople2);
+		
+		JPanel coordinate03 = new JPanel();
+		grid.add(coordinate03);
+		
+		JPanel robotsNames03 = new JPanel();
+		coordinate03.add(robotsNames03);
+		
+		JPanel nbPeople3 = new JPanel();
+		coordinate03.add(nbPeople3);
+		
+		JPanel coordinate04 = new JPanel();
+		grid.add(coordinate04);
+		
+		JPanel robotsNames04 = new JPanel();
+		coordinate04.add(robotsNames04);
+		
+		JPanel nbPeople4 = new JPanel();
+		coordinate04.add(nbPeople4);
+		
+		JPanel coordinate05 = new JPanel();
+		grid.add(coordinate05);
+		
+		JPanel robotsNames05 = new JPanel();
+		coordinate05.add(robotsNames05);
+		
+		JPanel nbPeople05 = new JPanel();
+		coordinate05.add(nbPeople05);
+		
+		JPanel coordinate06 = new JPanel();
+		grid.add(coordinate06);
+		
+		JPanel robotsNames06 = new JPanel();
+		coordinate06.add(robotsNames06);
+		
+		JPanel nbPeople06 = new JPanel();
+		coordinate06.add(nbPeople06);
+		
+		JPanel coordinate07 = new JPanel();
+		grid.add(coordinate07);
+		
+		JPanel robotsNames07 = new JPanel();
+		coordinate07.add(robotsNames07);
+		
+		JPanel nbPeople07 = new JPanel();
+		coordinate07.add(nbPeople07);
+		
+		JPanel coordinate08 = new JPanel();
+		grid.add(coordinate08);
+		
+		JPanel robotsNames08 = new JPanel();
+		coordinate08.add(robotsNames08);
+		
+		JPanel nbPeople08 = new JPanel();
+		coordinate08.add(nbPeople08);
+		
+		JPanel coordinate09 = new JPanel();
+		grid.add(coordinate09);
+		JPanel coordinate10 = new JPanel();
+		grid.add(coordinate010);
+		
 		
 	}
 
