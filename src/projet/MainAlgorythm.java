@@ -21,6 +21,7 @@ public class MainAlgorythm {
     public static void doTasks() {
         base.next();
         wildfires.next();
+        System.out.println("Nombre de personnes non sauvées : " + base.getUnsavedPeopleCount());
         view.update();
     }
 

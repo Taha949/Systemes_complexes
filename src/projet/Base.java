@@ -153,6 +153,24 @@ public class Base {
 			}
 		}
 	}
+	public int getUnsavedPeopleCount() {
+	    int count = 0;
+	    Coordinate[][] coordinates = Grid.getInstance().coordinates;
+
+	    for (int i = 0; i < coordinates.length; i++) {
+	        for (int j = 0; j < coordinates[i].length; j++) {
+	            Coordinate currentCoordinate = coordinates[i][j];
+
+	            // Vérifier si la case contient des personnes non sauvées
+	            if (!currentCoordinate.isBase && currentCoordinate.nbPeople > 0 && currentCoordinate.TimeBeforeDead <= 0) {
+	                count += currentCoordinate.nbPeople;
+	            }
+	        }
+	    }
+
+	    return count;
+	}
+
 
 
 	private void sortStoredRobots() {
