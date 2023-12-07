@@ -47,10 +47,12 @@ public class MainAlgorythm {
                         System.out.println("Perdu, il reste " + wildfires.fires.length + " feux, vous avez sauvé "
                                 + nbPeopleSaved + " personnes");
                         System.out.println("Nombre de personnes non sauvées : " + base.getUnsavedPeopleCount());
+                        System.out.println("Nombre de feux eteints : " + wildfires.nbFiresPutedOut);
                     } else {
                         double time = (MAXTIME - remainingTime) / 1000;
                         System.out.print("Feux éteints en :" + time + "s");
                         System.out.println("Nombre de personnes non sauvées : " + base.getUnsavedPeopleCount());
+                        System.out.println("Nombre de feux eteints : " + wildfires.nbFiresPutedOut);
                     }
                 }
             }
