@@ -20,12 +20,16 @@ public class Base {
 		this.robots = new Robot[nbRobots - nbExplorationRobots];
 		this.knownFires = new Fire[0];
 		this.storedRobots = new Robot[nbRobots - nbExplorationRobots];
+
+		Grid grid = Grid.getInstance();
 		for (int i = 0; i < nbExplorationRobots; i++){
-			this.explorationRobots[i] = new Robot("explorationRobot" + i, POSITION);
+			this.explorationRobots[i] = new Robot("e" + i, POSITION);
+			grid.coordinates[POSITION.x][POSITION.y].addRobot(this.explorationRobots[i].name);
 		}
 		for (int i = 0; i < nbRobots - nbExplorationRobots ; i++){
-			this.robots[i] = new Robot("robot" + i, POSITION);
+			this.robots[i] = new Robot("r" + i, POSITION);
 			this.storedRobots[i] = this.robots[i];
+			grid.coordinates[POSITION.x][POSITION.y].addRobot(this.robots[i].name);
 		}
 	}
 

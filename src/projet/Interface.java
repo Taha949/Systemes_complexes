@@ -17,6 +17,9 @@ import javax.swing.BoxLayout;
 public class Interface extends JFrame {
 
 	private JPanel contentPane;
+	
+	private JPanel gridPanel;
+
 
 	private Grid grid = Grid.getInstance();
 
@@ -38,8 +41,12 @@ public class Interface extends JFrame {
 	}
 
 	public void update(){
+		this.grid = Grid.getInstance();
 		EventQueue.invokeLater(() -> {
-            contentPane.repaint(); //redessiner la grille
+			this.gridPanel.removeAll();
+			this.createGridPanel(gridPanel);
+            this.gridPanel.repaint(); //redessiner la grille
+			this.gridPanel.revalidate();
         });
 	}
 
@@ -48,7 +55,7 @@ public class Interface extends JFrame {
 	 */
 	public Interface() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 800);
+		setBounds(100, 100, 1600, 1000);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -58,9 +65,14 @@ public class Interface extends JFrame {
 		JPanel header = new JPanel();
 		contentPane.add(header, BorderLayout.NORTH);
 
-		JPanel grid = new JPanel();
-		contentPane.add(grid, BorderLayout.CENTER);
-		grid.setLayout(new GridLayout(11, 11, 0, 0));
+		gridPanel = new JPanel();
+		contentPane.add(gridPanel, BorderLayout.CENTER);
+		gridPanel.setLayout(new GridLayout(11, 11, 0, 0));
+
+		this.createGridPanel(gridPanel);
+	}
+
+	public void createGridPanel(JPanel gridPanel) {
 
 		Coordinate coordinate;
 
@@ -74,7 +86,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex0y0.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex0y0);
+		gridPanel.add(coordinatex0y0);
 		JTextPane robotsNamesx0y0 = new JTextPane();
 		robotsNamesx0y0.setText("R: " + coordinate.getRobots());
 		coordinatex0y0.add(robotsNamesx0y0);
@@ -92,7 +104,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex0y1.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex0y1);
+		gridPanel.add(coordinatex0y1);
 		JTextPane robotsNamesx0y1 = new JTextPane();
 		robotsNamesx0y1.setText("R: " + coordinate.getRobots());
 		coordinatex0y1.add(robotsNamesx0y1);
@@ -110,7 +122,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex0y2.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex0y2);
+		gridPanel.add(coordinatex0y2);
 		JTextPane robotsNamesx0y2 = new JTextPane();
 		robotsNamesx0y2.setText("R: " + coordinate.getRobots());
 		coordinatex0y2.add(robotsNamesx0y2);
@@ -128,7 +140,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex0y3.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex0y3);
+		gridPanel.add(coordinatex0y3);
 		JTextPane robotsNamesx0y3 = new JTextPane();
 		robotsNamesx0y3.setText("R: " + coordinate.getRobots());
 		coordinatex0y3.add(robotsNamesx0y3);
@@ -146,7 +158,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex0y4.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex0y4);
+		gridPanel.add(coordinatex0y4);
 		JTextPane robotsNamesx0y4 = new JTextPane();
 		robotsNamesx0y4.setText("R: " + coordinate.getRobots());
 		coordinatex0y4.add(robotsNamesx0y4);
@@ -164,7 +176,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex0y5.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex0y5);
+		gridPanel.add(coordinatex0y5);
 		JTextPane robotsNamesx0y5 = new JTextPane();
 		robotsNamesx0y5.setText("R: " + coordinate.getRobots());
 		coordinatex0y5.add(robotsNamesx0y5);
@@ -182,7 +194,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex0y6.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex0y6);
+		gridPanel.add(coordinatex0y6);
 		JTextPane robotsNamesx0y6 = new JTextPane();
 		robotsNamesx0y6.setText("R: " + coordinate.getRobots());
 		coordinatex0y6.add(robotsNamesx0y6);
@@ -200,7 +212,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex0y7.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex0y7);
+		gridPanel.add(coordinatex0y7);
 		JTextPane robotsNamesx0y7 = new JTextPane();
 		robotsNamesx0y7.setText("R: " + coordinate.getRobots());
 		coordinatex0y7.add(robotsNamesx0y7);
@@ -218,7 +230,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex0y8.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex0y8);
+		gridPanel.add(coordinatex0y8);
 		JTextPane robotsNamesx0y8 = new JTextPane();
 		robotsNamesx0y8.setText("R: " + coordinate.getRobots());
 		coordinatex0y8.add(robotsNamesx0y8);
@@ -236,7 +248,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex0y9.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex0y9);
+		gridPanel.add(coordinatex0y9);
 		JTextPane robotsNamesx0y9 = new JTextPane();
 		robotsNamesx0y9.setText("R: " + coordinate.getRobots());
 		coordinatex0y9.add(robotsNamesx0y9);
@@ -254,7 +266,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex0y10.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex0y10);
+		gridPanel.add(coordinatex0y10);
 		JTextPane robotsNamesx0y10 = new JTextPane();
 		robotsNamesx0y10.setText("R: " + coordinate.getRobots());
 		coordinatex0y10.add(robotsNamesx0y10);
@@ -272,7 +284,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex1y0.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex1y0);
+		gridPanel.add(coordinatex1y0);
 		JTextPane robotsNamesx1y0 = new JTextPane();
 		robotsNamesx1y0.setText("R: " + coordinate.getRobots());
 		coordinatex1y0.add(robotsNamesx1y0);
@@ -290,7 +302,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex1y1.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex1y1);
+		gridPanel.add(coordinatex1y1);
 		JTextPane robotsNamesx1y1 = new JTextPane();
 		robotsNamesx1y1.setText("R: " + coordinate.getRobots());
 		coordinatex1y1.add(robotsNamesx1y1);
@@ -308,7 +320,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex1y2.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex1y2);
+		gridPanel.add(coordinatex1y2);
 		JTextPane robotsNamesx1y2 = new JTextPane();
 		robotsNamesx1y2.setText("R: " + coordinate.getRobots());
 		coordinatex1y2.add(robotsNamesx1y2);
@@ -326,7 +338,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex1y3.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex1y3);
+		gridPanel.add(coordinatex1y3);
 		JTextPane robotsNamesx1y3 = new JTextPane();
 		robotsNamesx1y3.setText("R: " + coordinate.getRobots());
 		coordinatex1y3.add(robotsNamesx1y3);
@@ -344,7 +356,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex1y4.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex1y4);
+		gridPanel.add(coordinatex1y4);
 		JTextPane robotsNamesx1y4 = new JTextPane();
 		robotsNamesx1y4.setText("R: " + coordinate.getRobots());
 		coordinatex1y4.add(robotsNamesx1y4);
@@ -362,7 +374,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex1y5.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex1y5);
+		gridPanel.add(coordinatex1y5);
 		JTextPane robotsNamesx1y5 = new JTextPane();
 		robotsNamesx1y5.setText("R: " + coordinate.getRobots());
 		coordinatex1y5.add(robotsNamesx1y5);
@@ -380,7 +392,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex1y6.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex1y6);
+		gridPanel.add(coordinatex1y6);
 		JTextPane robotsNamesx1y6 = new JTextPane();
 		robotsNamesx1y6.setText("R: " + coordinate.getRobots());
 		coordinatex1y6.add(robotsNamesx1y6);
@@ -398,7 +410,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex1y7.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex1y7);
+		gridPanel.add(coordinatex1y7);
 		JTextPane robotsNamesx1y7 = new JTextPane();
 		robotsNamesx1y7.setText("R: " + coordinate.getRobots());
 		coordinatex1y7.add(robotsNamesx1y7);
@@ -416,7 +428,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex1y8.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex1y8);
+		gridPanel.add(coordinatex1y8);
 		JTextPane robotsNamesx1y8 = new JTextPane();
 		robotsNamesx1y8.setText("R: " + coordinate.getRobots());
 		coordinatex1y8.add(robotsNamesx1y8);
@@ -434,7 +446,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex1y9.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex1y9);
+		gridPanel.add(coordinatex1y9);
 		JTextPane robotsNamesx1y9 = new JTextPane();
 		robotsNamesx1y9.setText("R: " + coordinate.getRobots());
 		coordinatex1y9.add(robotsNamesx1y9);
@@ -453,7 +465,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex1y10.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex1y10);
+		gridPanel.add(coordinatex1y10);
 		JTextPane robotsNamesx1y10 = new JTextPane();
 		robotsNamesx1y10.setText("R: " + coordinate.getRobots());
 		coordinatex1y10.add(robotsNamesx1y10);
@@ -471,7 +483,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex2y0.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex2y0);
+		gridPanel.add(coordinatex2y0);
 		JTextPane robotsNamesx2y0 = new JTextPane();
 		robotsNamesx2y0.setText("R: " + coordinate.getRobots());
 		coordinatex2y0.add(robotsNamesx2y0);
@@ -489,7 +501,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex2y1.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex2y1);
+		gridPanel.add(coordinatex2y1);
 		JTextPane robotsNamesx2y1 = new JTextPane();
 		robotsNamesx2y1.setText("R: " + coordinate.getRobots());
 		coordinatex2y1.add(robotsNamesx2y1);
@@ -507,7 +519,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex2y2.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex2y2);
+		gridPanel.add(coordinatex2y2);
 		JTextPane robotsNamesx2y2 = new JTextPane();
 		robotsNamesx2y2.setText("R: " + coordinate.getRobots());
 		coordinatex2y2.add(robotsNamesx2y2);
@@ -525,7 +537,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex2y3.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex2y3);
+		gridPanel.add(coordinatex2y3);
 		JTextPane robotsNamesx2y3 = new JTextPane();
 		robotsNamesx2y3.setText("R: " + coordinate.getRobots());
 		coordinatex2y3.add(robotsNamesx2y3);
@@ -543,7 +555,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex2y4.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex2y4);
+		gridPanel.add(coordinatex2y4);
 		JTextPane robotsNamesx2y4 = new JTextPane();
 		robotsNamesx2y4.setText("R: " + coordinate.getRobots());
 		coordinatex2y4.add(robotsNamesx2y4);
@@ -561,7 +573,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex2y5.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex2y5);
+		gridPanel.add(coordinatex2y5);
 		JTextPane robotsNamesx2y5 = new JTextPane();
 		robotsNamesx2y5.setText("R: " + coordinate.getRobots());
 		coordinatex2y5.add(robotsNamesx2y5);
@@ -579,7 +591,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex2y6.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex2y6);
+		gridPanel.add(coordinatex2y6);
 		JTextPane robotsNamesx2y6 = new JTextPane();
 		robotsNamesx2y6.setText("R: " + coordinate.getRobots());
 		coordinatex2y6.add(robotsNamesx2y6);
@@ -597,7 +609,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex2y7.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex2y7);
+		gridPanel.add(coordinatex2y7);
 		JTextPane robotsNamesx2y7 = new JTextPane();
 		robotsNamesx2y7.setText("R: " + coordinate.getRobots());
 		coordinatex2y7.add(robotsNamesx2y7);
@@ -615,7 +627,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex2y8.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex2y8);
+		gridPanel.add(coordinatex2y8);
 		JTextPane robotsNamesx2y8 = new JTextPane();
 		robotsNamesx2y8.setText("R: " + coordinate.getRobots());
 		coordinatex2y8.add(robotsNamesx2y8);
@@ -633,7 +645,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex2y9.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex2y9);
+		gridPanel.add(coordinatex2y9);
 		JTextPane robotsNamesx2y9 = new JTextPane();
 		robotsNamesx2y9.setText("R: " + coordinate.getRobots());
 		coordinatex2y9.add(robotsNamesx2y9);
@@ -651,7 +663,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex2y10.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex2y10);
+		gridPanel.add(coordinatex2y10);
 		JTextPane robotsNamesx2y10 = new JTextPane();
 		robotsNamesx2y10.setText("R: " + coordinate.getRobots());
 		coordinatex2y10.add(robotsNamesx2y10);
@@ -669,7 +681,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex3y0.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex3y0);
+		gridPanel.add(coordinatex3y0);
 		JTextPane robotsNamesx3y0 = new JTextPane();
 		robotsNamesx3y0.setText("R: " + coordinate.getRobots());
 		coordinatex3y0.add(robotsNamesx3y0);
@@ -687,7 +699,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex3y1.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex3y1);
+		gridPanel.add(coordinatex3y1);
 		JTextPane robotsNamesx3y1 = new JTextPane();
 		robotsNamesx3y1.setText("R: " + coordinate.getRobots());
 		coordinatex3y1.add(robotsNamesx3y1);
@@ -705,7 +717,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex3y2.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex3y2);
+		gridPanel.add(coordinatex3y2);
 		JTextPane robotsNamesx3y2 = new JTextPane();
 		robotsNamesx3y2.setText("R: " + coordinate.getRobots());
 		coordinatex3y2.add(robotsNamesx3y2);
@@ -723,7 +735,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex3y3.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex3y3);
+		gridPanel.add(coordinatex3y3);
 		JTextPane robotsNamesx3y3 = new JTextPane();
 		robotsNamesx3y3.setText("R: " + coordinate.getRobots());
 		coordinatex3y3.add(robotsNamesx3y3);
@@ -741,7 +753,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex3y4.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex3y4);
+		gridPanel.add(coordinatex3y4);
 		JTextPane robotsNamesx3y4 = new JTextPane();
 		robotsNamesx3y4.setText("R: " + coordinate.getRobots());
 		coordinatex3y4.add(robotsNamesx3y4);
@@ -759,7 +771,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex3y5.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex3y5);
+		gridPanel.add(coordinatex3y5);
 		JTextPane robotsNamesx3y5 = new JTextPane();
 		robotsNamesx3y5.setText("R: " + coordinate.getRobots());
 		coordinatex3y5.add(robotsNamesx3y5);
@@ -777,7 +789,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex3y6.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex3y6);
+		gridPanel.add(coordinatex3y6);
 		JTextPane robotsNamesx3y6 = new JTextPane();
 		robotsNamesx3y6.setText("R: " + coordinate.getRobots());
 		coordinatex3y6.add(robotsNamesx3y6);
@@ -795,7 +807,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex3y7.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex3y7);
+		gridPanel.add(coordinatex3y7);
 		JTextPane robotsNamesx3y7 = new JTextPane();
 		robotsNamesx3y7.setText("R: " + coordinate.getRobots());
 		coordinatex3y7.add(robotsNamesx3y7);
@@ -813,7 +825,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex3y8.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex3y8);
+		gridPanel.add(coordinatex3y8);
 		JTextPane robotsNamesx3y8 = new JTextPane();
 		robotsNamesx3y8.setText("R: " + coordinate.getRobots());
 		coordinatex3y8.add(robotsNamesx3y8);
@@ -831,7 +843,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex3y9.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex3y9);
+		gridPanel.add(coordinatex3y9);
 		JTextPane robotsNamesx3y9 = new JTextPane();
 		robotsNamesx3y9.setText("R: " + coordinate.getRobots());
 		coordinatex3y9.add(robotsNamesx3y9);
@@ -849,7 +861,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex3y10.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex3y10);
+		gridPanel.add(coordinatex3y10);
 		JTextPane robotsNamesx3y10 = new JTextPane();
 		robotsNamesx3y10.setText("R: " + coordinate.getRobots());
 		coordinatex3y10.add(robotsNamesx3y10);
@@ -867,7 +879,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex4y0.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex4y0);
+		gridPanel.add(coordinatex4y0);
 		JTextPane robotsNamesx4y0 = new JTextPane();
 		robotsNamesx4y0.setText("R: " + coordinate.getRobots());
 		coordinatex4y0.add(robotsNamesx4y0);
@@ -885,7 +897,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex4y1.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex4y1);
+		gridPanel.add(coordinatex4y1);
 		JTextPane robotsNamesx4y1 = new JTextPane();
 		robotsNamesx4y1.setText("R: " + coordinate.getRobots());
 		coordinatex4y1.add(robotsNamesx4y1);
@@ -903,7 +915,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex4y2.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex4y2);
+		gridPanel.add(coordinatex4y2);
 		JTextPane robotsNamesx4y2 = new JTextPane();
 		robotsNamesx4y2.setText("R: " + coordinate.getRobots());
 		coordinatex4y2.add(robotsNamesx4y2);
@@ -921,7 +933,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex4y3.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex4y3);
+		gridPanel.add(coordinatex4y3);
 		JTextPane robotsNamesx4y3 = new JTextPane();
 		robotsNamesx4y3.setText("R: " + coordinate.getRobots());
 		coordinatex4y3.add(robotsNamesx4y3);
@@ -939,7 +951,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex4y4.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex4y4);
+		gridPanel.add(coordinatex4y4);
 		JTextPane robotsNamesx4y4 = new JTextPane();
 		robotsNamesx4y4.setText("R: " + coordinate.getRobots());
 		coordinatex4y4.add(robotsNamesx4y4);
@@ -957,7 +969,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex4y5.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex4y5);
+		gridPanel.add(coordinatex4y5);
 		JTextPane robotsNamesx4y5 = new JTextPane();
 		robotsNamesx4y5.setText("R: " + coordinate.getRobots());
 		coordinatex4y5.add(robotsNamesx4y5);
@@ -975,7 +987,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex4y6.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex4y6);
+		gridPanel.add(coordinatex4y6);
 		JTextPane robotsNamesx4y6 = new JTextPane();
 		robotsNamesx4y6.setText("R: " + coordinate.getRobots());
 		coordinatex4y6.add(robotsNamesx4y6);
@@ -993,7 +1005,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex4y7.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex4y7);
+		gridPanel.add(coordinatex4y7);
 		JTextPane robotsNamesx4y7 = new JTextPane();
 		robotsNamesx4y7.setText("R: " + coordinate.getRobots());
 		coordinatex4y7.add(robotsNamesx4y7);
@@ -1011,7 +1023,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex4y8.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex4y8);
+		gridPanel.add(coordinatex4y8);
 		JTextPane robotsNamesx4y8 = new JTextPane();
 		robotsNamesx4y8.setText("R: " + coordinate.getRobots());
 		coordinatex4y8.add(robotsNamesx4y8);
@@ -1029,7 +1041,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex4y9.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex4y9);
+		gridPanel.add(coordinatex4y9);
 		JTextPane robotsNamesx4y9 = new JTextPane();
 		robotsNamesx4y9.setText("R: " + coordinate.getRobots());
 		coordinatex4y9.add(robotsNamesx4y9);
@@ -1047,7 +1059,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex4y10.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex4y10);
+		gridPanel.add(coordinatex4y10);
 		JTextPane robotsNamesx4y10 = new JTextPane();
 		robotsNamesx4y10.setText("R: " + coordinate.getRobots());
 		coordinatex4y10.add(robotsNamesx4y10);
@@ -1065,7 +1077,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex5y0.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex5y0);
+		gridPanel.add(coordinatex5y0);
 		JTextPane robotsNamesx5y0 = new JTextPane();
 		robotsNamesx5y0.setText("R: " + coordinate.getRobots());
 		coordinatex5y0.add(robotsNamesx5y0);
@@ -1083,7 +1095,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex5y1.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex5y1);
+		gridPanel.add(coordinatex5y1);
 		JTextPane robotsNamesx5y1 = new JTextPane();
 		robotsNamesx5y1.setText("R: " + coordinate.getRobots());
 		coordinatex5y1.add(robotsNamesx5y1);
@@ -1101,7 +1113,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex5y2.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex5y2);
+		gridPanel.add(coordinatex5y2);
 		JTextPane robotsNamesx5y2 = new JTextPane();
 		robotsNamesx5y2.setText("R: " + coordinate.getRobots());
 		coordinatex5y2.add(robotsNamesx5y2);
@@ -1119,7 +1131,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex5y3.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex5y3);
+		gridPanel.add(coordinatex5y3);
 		JTextPane robotsNamesx5y3 = new JTextPane();
 		robotsNamesx5y3.setText("R: " + coordinate.getRobots());
 		coordinatex5y3.add(robotsNamesx5y3);
@@ -1137,7 +1149,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex5y4.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex5y4);
+		gridPanel.add(coordinatex5y4);
 		JTextPane robotsNamesx5y4 = new JTextPane();
 		robotsNamesx5y4.setText("R: " + coordinate.getRobots());
 		coordinatex5y4.add(robotsNamesx5y4);
@@ -1155,7 +1167,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex5y5.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex5y5);
+		gridPanel.add(coordinatex5y5);
 		JTextPane robotsNamesx5y5 = new JTextPane();
 		robotsNamesx5y5.setText("R: " + coordinate.getRobots());
 		coordinatex5y5.add(robotsNamesx5y5);
@@ -1173,7 +1185,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex5y6.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex5y6);
+		gridPanel.add(coordinatex5y6);
 		JTextPane robotsNamesx5y6 = new JTextPane();
 		robotsNamesx5y6.setText("R: " + coordinate.getRobots());
 		coordinatex5y6.add(robotsNamesx5y6);
@@ -1191,7 +1203,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex5y7.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex5y7);
+		gridPanel.add(coordinatex5y7);
 		JTextPane robotsNamesx5y7 = new JTextPane();
 		robotsNamesx5y7.setText("R: " + coordinate.getRobots());
 		coordinatex5y7.add(robotsNamesx5y7);
@@ -1209,7 +1221,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex5y8.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex5y8);
+		gridPanel.add(coordinatex5y8);
 		JTextPane robotsNamesx5y8 = new JTextPane();
 		robotsNamesx5y8.setText("R: " + coordinate.getRobots());
 		coordinatex5y8.add(robotsNamesx5y8);
@@ -1227,7 +1239,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex5y9.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex5y9);
+		gridPanel.add(coordinatex5y9);
 		JTextPane robotsNamesx5y9 = new JTextPane();
 		robotsNamesx5y9.setText("R: " + coordinate.getRobots());
 		coordinatex5y9.add(robotsNamesx5y9);
@@ -1245,7 +1257,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex5y10.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex5y10);
+		gridPanel.add(coordinatex5y10);
 		JTextPane robotsNamesx5y10 = new JTextPane();
 		robotsNamesx5y10.setText("R: " + coordinate.getRobots());
 		coordinatex5y10.add(robotsNamesx5y10);
@@ -1263,7 +1275,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex6y0.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex6y0);
+		gridPanel.add(coordinatex6y0);
 		JTextPane robotsNamesx6y0 = new JTextPane();
 		robotsNamesx6y0.setText("R: " + coordinate.getRobots());
 		coordinatex6y0.add(robotsNamesx6y0);
@@ -1281,7 +1293,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex6y1.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex6y1);
+		gridPanel.add(coordinatex6y1);
 		JTextPane robotsNamesx6y1 = new JTextPane();
 		robotsNamesx6y1.setText("R: " + coordinate.getRobots());
 		coordinatex6y1.add(robotsNamesx6y1);
@@ -1299,7 +1311,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex6y2.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex6y2);
+		gridPanel.add(coordinatex6y2);
 		JTextPane robotsNamesx6y2 = new JTextPane();
 		robotsNamesx6y2.setText("R: " + coordinate.getRobots());
 		coordinatex6y2.add(robotsNamesx6y2);
@@ -1317,7 +1329,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex6y3.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex6y3);
+		gridPanel.add(coordinatex6y3);
 		JTextPane robotsNamesx6y3 = new JTextPane();
 		robotsNamesx6y3.setText("R: " + coordinate.getRobots());
 		coordinatex6y3.add(robotsNamesx6y3);
@@ -1335,7 +1347,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex6y4.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex6y4);
+		gridPanel.add(coordinatex6y4);
 		JTextPane robotsNamesx6y4 = new JTextPane();
 		robotsNamesx6y4.setText("R: " + coordinate.getRobots());
 		coordinatex6y4.add(robotsNamesx6y4);
@@ -1353,7 +1365,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex6y5.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex6y5);
+		gridPanel.add(coordinatex6y5);
 		JTextPane robotsNamesx6y5 = new JTextPane();
 		robotsNamesx6y5.setText("R: " + coordinate.getRobots());
 		coordinatex6y5.add(robotsNamesx6y5);
@@ -1371,7 +1383,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex6y6.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex6y6);
+		gridPanel.add(coordinatex6y6);
 		JTextPane robotsNamesx6y6 = new JTextPane();
 		robotsNamesx6y6.setText("R: " + coordinate.getRobots());
 		coordinatex6y6.add(robotsNamesx6y6);
@@ -1389,7 +1401,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex6y7.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex6y7);
+		gridPanel.add(coordinatex6y7);
 		JTextPane robotsNamesx6y7 = new JTextPane();
 		robotsNamesx6y7.setText("R: " + coordinate.getRobots());
 		coordinatex6y7.add(robotsNamesx6y7);
@@ -1407,7 +1419,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex6y8.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex6y8);
+		gridPanel.add(coordinatex6y8);
 		JTextPane robotsNamesx6y8 = new JTextPane();
 		robotsNamesx6y8.setText("R: " + coordinate.getRobots());
 		coordinatex6y8.add(robotsNamesx6y8);
@@ -1425,7 +1437,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex6y9.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex6y9);
+		gridPanel.add(coordinatex6y9);
 		JTextPane robotsNamesx6y9 = new JTextPane();
 		robotsNamesx6y9.setText("R: " + coordinate.getRobots());
 		coordinatex6y9.add(robotsNamesx6y9);
@@ -1443,7 +1455,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex6y10.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex6y10);
+		gridPanel.add(coordinatex6y10);
 		JTextPane robotsNamesx6y10 = new JTextPane();
 		robotsNamesx6y10.setText("R: " + coordinate.getRobots());
 		coordinatex6y10.add(robotsNamesx6y10);
@@ -1461,7 +1473,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex7y0.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex7y0);
+		gridPanel.add(coordinatex7y0);
 		JTextPane robotsNamesx7y0 = new JTextPane();
 		robotsNamesx7y0.setText("R: " + coordinate.getRobots());
 		coordinatex7y0.add(robotsNamesx7y0);
@@ -1479,7 +1491,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex7y1.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex7y1);
+		gridPanel.add(coordinatex7y1);
 		JTextPane robotsNamesx7y1 = new JTextPane();
 		robotsNamesx7y1.setText("R: " + coordinate.getRobots());
 		coordinatex7y1.add(robotsNamesx7y1);
@@ -1497,7 +1509,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex7y2.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex7y2);
+		gridPanel.add(coordinatex7y2);
 		JTextPane robotsNamesx7y2 = new JTextPane();
 		robotsNamesx7y2.setText("R: " + coordinate.getRobots());
 		coordinatex7y2.add(robotsNamesx7y2);
@@ -1515,7 +1527,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex7y3.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex7y3);
+		gridPanel.add(coordinatex7y3);
 		JTextPane robotsNamesx7y3 = new JTextPane();
 		robotsNamesx7y3.setText("R: " + coordinate.getRobots());
 		coordinatex7y3.add(robotsNamesx7y3);
@@ -1533,7 +1545,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex7y4.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex7y4);
+		gridPanel.add(coordinatex7y4);
 		JTextPane robotsNamesx7y4 = new JTextPane();
 		robotsNamesx7y4.setText("R: " + coordinate.getRobots());
 		coordinatex7y4.add(robotsNamesx7y4);
@@ -1551,7 +1563,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex7y5.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex7y5);
+		gridPanel.add(coordinatex7y5);
 		JTextPane robotsNamesx7y5 = new JTextPane();
 		robotsNamesx7y5.setText("R: " + coordinate.getRobots());
 		coordinatex7y5.add(robotsNamesx7y5);
@@ -1569,7 +1581,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex7y6.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex7y6);
+		gridPanel.add(coordinatex7y6);
 		JTextPane robotsNamesx7y6 = new JTextPane();
 		robotsNamesx7y6.setText("R: " + coordinate.getRobots());
 		coordinatex7y6.add(robotsNamesx7y6);
@@ -1587,7 +1599,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex7y7.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex7y7);
+		gridPanel.add(coordinatex7y7);
 		JTextPane robotsNamesx7y7 = new JTextPane();
 		robotsNamesx7y7.setText("R: " + coordinate.getRobots());
 		coordinatex7y7.add(robotsNamesx7y7);
@@ -1605,7 +1617,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex7y8.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex7y8);
+		gridPanel.add(coordinatex7y8);
 		JTextPane robotsNamesx7y8 = new JTextPane();
 		robotsNamesx7y8.setText("R: " + coordinate.getRobots());
 		coordinatex7y8.add(robotsNamesx7y8);
@@ -1623,7 +1635,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex7y9.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex7y9);
+		gridPanel.add(coordinatex7y9);
 		JTextPane robotsNamesx7y9 = new JTextPane();
 		robotsNamesx7y9.setText("R: " + coordinate.getRobots());
 		coordinatex7y9.add(robotsNamesx7y9);
@@ -1641,7 +1653,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex7y10.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex7y10);
+		gridPanel.add(coordinatex7y10);
 		JTextPane robotsNamesx7y10 = new JTextPane();
 		robotsNamesx7y10.setText("R: " + coordinate.getRobots());
 		coordinatex7y10.add(robotsNamesx7y10);
@@ -1659,7 +1671,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex8y0.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex8y0);
+		gridPanel.add(coordinatex8y0);
 		JTextPane robotsNamesx8y0 = new JTextPane();
 		robotsNamesx8y0.setText("R: " + coordinate.getRobots());
 		coordinatex8y0.add(robotsNamesx8y0);
@@ -1677,7 +1689,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex8y1.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex8y1);
+		gridPanel.add(coordinatex8y1);
 		JTextPane robotsNamesx8y1 = new JTextPane();
 		robotsNamesx8y1.setText("R: " + coordinate.getRobots());
 		coordinatex8y1.add(robotsNamesx8y1);
@@ -1695,7 +1707,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex8y2.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex8y2);
+		gridPanel.add(coordinatex8y2);
 		JTextPane robotsNamesx8y2 = new JTextPane();
 		robotsNamesx8y2.setText("R: " + coordinate.getRobots());
 		coordinatex8y2.add(robotsNamesx8y2);
@@ -1713,7 +1725,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex8y3.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex8y3);
+		gridPanel.add(coordinatex8y3);
 		JTextPane robotsNamesx8y3 = new JTextPane();
 		robotsNamesx8y3.setText("R: " + coordinate.getRobots());
 		coordinatex8y3.add(robotsNamesx8y3);
@@ -1731,7 +1743,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex8y4.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex8y4);
+		gridPanel.add(coordinatex8y4);
 		JTextPane robotsNamesx8y4 = new JTextPane();
 		robotsNamesx8y4.setText("R: " + coordinate.getRobots());
 		coordinatex8y4.add(robotsNamesx8y4);
@@ -1749,7 +1761,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex8y5.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex8y5);
+		gridPanel.add(coordinatex8y5);
 		JTextPane robotsNamesx8y5 = new JTextPane();
 		robotsNamesx8y5.setText("R: " + coordinate.getRobots());
 		coordinatex8y5.add(robotsNamesx8y5);
@@ -1767,7 +1779,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex8y6.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex8y6);
+		gridPanel.add(coordinatex8y6);
 		JTextPane robotsNamesx8y6 = new JTextPane();
 		robotsNamesx8y6.setText("R: " + coordinate.getRobots());
 		coordinatex8y6.add(robotsNamesx8y6);
@@ -1785,7 +1797,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex8y7.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex8y7);
+		gridPanel.add(coordinatex8y7);
 		JTextPane robotsNamesx8y7 = new JTextPane();
 		robotsNamesx8y7.setText("R: " + coordinate.getRobots());
 		coordinatex8y7.add(robotsNamesx8y7);
@@ -1803,7 +1815,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex8y8.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex8y8);
+		gridPanel.add(coordinatex8y8);
 		JTextPane robotsNamesx8y8 = new JTextPane();
 		robotsNamesx8y8.setText("R: " + coordinate.getRobots());
 		coordinatex8y8.add(robotsNamesx8y8);
@@ -1821,7 +1833,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex8y9.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex8y9);
+		gridPanel.add(coordinatex8y9);
 		JTextPane robotsNamesx8y9 = new JTextPane();
 		robotsNamesx8y9.setText("R: " + coordinate.getRobots());
 		coordinatex8y9.add(robotsNamesx8y9);
@@ -1839,7 +1851,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex8y10.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex8y10);
+		gridPanel.add(coordinatex8y10);
 		JTextPane robotsNamesx8y10 = new JTextPane();
 		robotsNamesx8y10.setText("R: " + coordinate.getRobots());
 		coordinatex8y10.add(robotsNamesx8y10);
@@ -1857,7 +1869,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex9y0.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex9y0);
+		gridPanel.add(coordinatex9y0);
 		JTextPane robotsNamesx9y0 = new JTextPane();
 		robotsNamesx9y0.setText("R: " + coordinate.getRobots());
 		coordinatex9y0.add(robotsNamesx9y0);
@@ -1875,7 +1887,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex9y1.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex9y1);
+		gridPanel.add(coordinatex9y1);
 		JTextPane robotsNamesx9y1 = new JTextPane();
 		robotsNamesx9y1.setText("R: " + coordinate.getRobots());
 		coordinatex9y1.add(robotsNamesx9y1);
@@ -1893,7 +1905,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex9y2.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex9y2);
+		gridPanel.add(coordinatex9y2);
 		JTextPane robotsNamesx9y2 = new JTextPane();
 		robotsNamesx9y2.setText("R: " + coordinate.getRobots());
 		coordinatex9y2.add(robotsNamesx9y2);
@@ -1911,7 +1923,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex9y3.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex9y3);
+		gridPanel.add(coordinatex9y3);
 		JTextPane robotsNamesx9y3 = new JTextPane();
 		robotsNamesx9y3.setText("R: " + coordinate.getRobots());
 		coordinatex9y3.add(robotsNamesx9y3);
@@ -1929,7 +1941,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex9y4.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex9y4);
+		gridPanel.add(coordinatex9y4);
 		JTextPane robotsNamesx9y4 = new JTextPane();
 		robotsNamesx9y4.setText("R: " + coordinate.getRobots());
 		coordinatex9y4.add(robotsNamesx9y4);
@@ -1947,7 +1959,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex9y5.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex9y5);
+		gridPanel.add(coordinatex9y5);
 		JTextPane robotsNamesx9y5 = new JTextPane();
 		robotsNamesx9y5.setText("R: " + coordinate.getRobots());
 		coordinatex9y5.add(robotsNamesx9y5);
@@ -1965,7 +1977,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex9y6.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex9y6);
+		gridPanel.add(coordinatex9y6);
 		JTextPane robotsNamesx9y6 = new JTextPane();
 		robotsNamesx9y6.setText("R: " + coordinate.getRobots());
 		coordinatex9y6.add(robotsNamesx9y6);
@@ -1983,7 +1995,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex9y7.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex9y7);
+		gridPanel.add(coordinatex9y7);
 		JTextPane robotsNamesx9y7 = new JTextPane();
 		robotsNamesx9y7.setText("R: " + coordinate.getRobots());
 		coordinatex9y7.add(robotsNamesx9y7);
@@ -2001,7 +2013,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex9y8.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex9y8);
+		gridPanel.add(coordinatex9y8);
 		JTextPane robotsNamesx9y8 = new JTextPane();
 		robotsNamesx9y8.setText("R: " + coordinate.getRobots());
 		coordinatex9y8.add(robotsNamesx9y8);
@@ -2019,7 +2031,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex9y9.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex9y9);
+		gridPanel.add(coordinatex9y9);
 		JTextPane robotsNamesx9y9 = new JTextPane();
 		robotsNamesx9y9.setText("R: " + coordinate.getRobots());
 		coordinatex9y9.add(robotsNamesx9y9);
@@ -2037,7 +2049,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex9y10.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex9y10);
+		gridPanel.add(coordinatex9y10);
 		JTextPane robotsNamesx9y10 = new JTextPane();
 		robotsNamesx9y10.setText("R: " + coordinate.getRobots());
 		coordinatex9y10.add(robotsNamesx9y10);
@@ -2055,7 +2067,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex10y0.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex10y0);
+		gridPanel.add(coordinatex10y0);
 		JTextPane robotsNamesx10y0 = new JTextPane();
 		robotsNamesx10y0.setText("R: " + coordinate.getRobots());
 		coordinatex10y0.add(robotsNamesx10y0);
@@ -2073,7 +2085,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex10y1.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex10y1);
+		gridPanel.add(coordinatex10y1);
 		JTextPane robotsNamesx10y1 = new JTextPane();
 		robotsNamesx10y1.setText("R: " + coordinate.getRobots());
 		coordinatex10y1.add(robotsNamesx10y1);
@@ -2091,7 +2103,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex10y2.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex10y2);
+		gridPanel.add(coordinatex10y2);
 		JTextPane robotsNamesx10y2 = new JTextPane();
 		robotsNamesx10y2.setText("R: " + coordinate.getRobots());
 		coordinatex10y2.add(robotsNamesx10y2);
@@ -2109,7 +2121,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex10y3.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex10y3);
+		gridPanel.add(coordinatex10y3);
 		JTextPane robotsNamesx10y3 = new JTextPane();
 		robotsNamesx10y3.setText("R: " + coordinate.getRobots());
 		coordinatex10y3.add(robotsNamesx10y3);
@@ -2127,7 +2139,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex10y4.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex10y4);
+		gridPanel.add(coordinatex10y4);
 		JTextPane robotsNamesx10y4 = new JTextPane();
 		robotsNamesx10y4.setText("R: " + coordinate.getRobots());
 		coordinatex10y4.add(robotsNamesx10y4);
@@ -2145,7 +2157,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex10y5.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex10y5);
+		gridPanel.add(coordinatex10y5);
 		JTextPane robotsNamesx10y5 = new JTextPane();
 		robotsNamesx10y5.setText("R: " + coordinate.getRobots());
 		coordinatex10y5.add(robotsNamesx10y5);
@@ -2163,7 +2175,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex10y6.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex10y6);
+		gridPanel.add(coordinatex10y6);
 		JTextPane robotsNamesx10y6 = new JTextPane();
 		robotsNamesx10y6.setText("R: " + coordinate.getRobots());
 		coordinatex10y6.add(robotsNamesx10y6);
@@ -2181,7 +2193,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex10y7.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex10y7);
+		gridPanel.add(coordinatex10y7);
 		JTextPane robotsNamesx10y7 = new JTextPane();
 		robotsNamesx10y7.setText("R: " + coordinate.getRobots());
 		coordinatex10y7.add(robotsNamesx10y7);
@@ -2199,7 +2211,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex10y8.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex10y8);
+		gridPanel.add(coordinatex10y8);
 		JTextPane robotsNamesx10y8 = new JTextPane();
 		robotsNamesx10y8.setText("R: " + coordinate.getRobots());
 		coordinatex10y8.add(robotsNamesx10y8);
@@ -2217,7 +2229,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex10y9.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex10y9);
+		gridPanel.add(coordinatex10y9);
 		JTextPane robotsNamesx10y9 = new JTextPane();
 		robotsNamesx10y9.setText("R: " + coordinate.getRobots());
 		coordinatex10y9.add(robotsNamesx10y9);
@@ -2235,7 +2247,7 @@ public class Interface extends JFrame {
 		} else {
 			coordinatex10y10.setBackground(new Color(0, 200, 0));
 		}
-		grid.add(coordinatex10y10);
+		gridPanel.add(coordinatex10y10);
 		JTextPane robotsNamesx10y10 = new JTextPane();
 		robotsNamesx10y10.setText("R: " + coordinate.getRobots());
 		coordinatex10y10.add(robotsNamesx10y10);
